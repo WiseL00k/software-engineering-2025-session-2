@@ -1,7 +1,22 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
 #include "Similarity.h"
 
 using namespace std;
+
+// 读取文件内容为字符串
+string readFile(const string &filePath) {
+    ifstream in(filePath);
+    if (!in.is_open()) {
+        cerr << "Error: Cannot open file " << filePath << endl;
+        exit(1);
+    }
+    stringstream buffer;
+    buffer << in.rdbuf();
+    return buffer.str();
+}
 
 int main(int argc, char *argv[]) {
     if (argc != 4) {
@@ -14,6 +29,8 @@ int main(int argc, char *argv[]) {
     string plagiarizedPath = argv[2];
     string outputPath = argv[3];
 
+    string originalText = readFile(originalPath);
+    string plagiarizedText = readFile(plagiarizedPath);
 
     return 0;
 }
