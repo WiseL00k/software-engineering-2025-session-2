@@ -17,3 +17,9 @@ int Similarity::lcsLength(const std::string &a, const std::string &b) {
     }
     return dp[n][m];
 }
+
+double Similarity::calculate(const std::string &text1, const std::string &text2) {
+    if (text1.empty()) return 0.0;
+    int lcs = lcsLength(text1, text2);
+    return static_cast<double>(lcs) / text1.size();
+}
