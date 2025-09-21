@@ -32,5 +32,15 @@ int main(int argc, char *argv[]) {
     string originalText = readFile(originalPath);
     string plagiarizedText = readFile(plagiarizedPath);
 
+    double similarity = Similarity::calculate(originalText, plagiarizedText);
+
+    ofstream out(outputPath);
+    if (!out.is_open()) {
+        cerr << "Error: Cannot open output file " << outputPath << endl;
+        return 1;
+    }
+    out << fixed << setprecision(2) << similarity << endl;
+    return 0;
+
     return 0;
 }
