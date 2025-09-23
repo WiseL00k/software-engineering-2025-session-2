@@ -2,7 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include "Similarity.h"
+#include "../../Similarity/includes/Similarity.h"
 
 using namespace std;
 
