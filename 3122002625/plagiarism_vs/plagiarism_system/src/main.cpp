@@ -42,5 +42,4 @@ int main(int argc, char *argv[]) {
     out << fixed << setprecision(2) << similarity << endl;
     return 0;
 
-    return 0;
 }
