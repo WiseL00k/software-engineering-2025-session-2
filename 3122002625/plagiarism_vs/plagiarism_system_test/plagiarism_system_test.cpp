@@ -1,11 +1,42 @@
 #include "pch.h" // 预编译头 (VS 自动生成)
 #include "CppUnitTest.h"
+#include <fstream>
+#include <sstream>
+#include <filesystem>
+#include <windows.h> // GetModuleFileNameA
 #include "../Similarity/includes/Similarity.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTestSimilarity
 {
+    static std::string wstr_to_string(const std::wstring& ws) {
+        return std::string(ws.begin(), ws.end());
+    }
+
+    static void logMsg(const std::string& s) {
+        // Logger expects wide string
+        std::wstring ws(s.begin(), s.end());
+        Logger::WriteMessage(ws.c_str());
+    }
+
+    std::string readFile(const std::string& path) {
+        namespace fs = std::filesystem;
+        // Print current working directory for debug
+        try {
+            auto cwd = fs::current_path().wstring();
+            logMsg("Current working dir: " + wstr_to_string(cwd));
+        }
+        catch (...) {
+            logMsg("Unable to get current path");
+        }
+        std::ifstream fin(path);
+        std::ostringstream ss;
+        ss << fin.rdbuf();
+        return ss.str();
+    }
+
+
     TEST_CLASS(SimilarityTests)
     {
     public:
@@ -77,6 +108,55 @@ namespace UnitTestSimilarity
         TEST_METHOD(OriginalEmpty)
         {
             Assert::AreEqual(0.0, Similarity::calculate("", "non-empty"), 1e-9, L"OriginalEmpty failed");
+        }
+
+        TEST_METHOD(Sample_Orig_Add)
+        {
+            std::string orig = readFile("../../../plagiarism_system_test/samples/orig.txt");
+            std::string plag = readFile("../../../plagiarism_system_test/samples/orig_0.8_add.txt");
+
+            Assert::IsTrue(!orig.empty(), L"orig.txt not found or empty");
+            Assert::IsTrue(!plag.empty(), L"orig_add.txt not found or empty");
+
+            double sim = Similarity::calculate(orig, plag);
+
+            std::wstring msg = L"Orig vs Orig_Add similarity = " + std::to_wstring(sim);
+            Logger::WriteMessage(msg.c_str());
+
+            // 这里只要断言相似度合理（0 ~ 1），可根据实际情况加范围
+            Assert::IsTrue(sim > 0.0 && sim <= 1.0, L"Sample_Orig_Add failed");
+        }
+
+        TEST_METHOD(Sample_Orig_Del)
+        {
+            std::string orig = readFile("../../../plagiarism_system_test/samples/orig.txt");
+            std::string plag = readFile("../../../plagiarism_system_test/samples/orig_0.8_del.txt");
+
+            Assert::IsTrue(!orig.empty(), L"orig.txt not found or empty");
+            Assert::IsTrue(!plag.empty(), L"orig_del.txt not found or empty");
+
+            double sim = Similarity::calculate(orig, plag);
+
+            std::wstring msg = L"Orig vs Orig_Del similarity = " + std::to_wstring(sim);
+            Logger::WriteMessage(msg.c_str());
+
+            Assert::IsTrue(sim > 0.0 && sim <= 1.0, L"Sample_Orig_Del failed");
+        }
+
+        TEST_METHOD(Sample_Orig_Rep)
+        {
+            std::string orig = readFile("../../../plagiarism_system_test/samples/orig.txt");
+            std::string plag = readFile("../../../plagiarism_system_test/samples/orig_0.8_dis_15.txt");
+
+            Assert::IsTrue(!orig.empty(), L"orig.txt not found or empty");
+            Assert::IsTrue(!plag.empty(), L"orig_dis.txt not found or empty");
+
+            double sim = Similarity::calculate(orig, plag);
+
+            std::wstring msg = L"Orig vs Orig_Rep similarity = " + std::to_wstring(sim);
+            Logger::WriteMessage(msg.c_str());
+
+            Assert::IsTrue(sim > 0.0 && sim <= 1.0, L"Sample_Orig_dis failed");
         }
     };
 }
