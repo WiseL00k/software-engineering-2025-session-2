@@ -8,8 +8,8 @@
 #include <algorithm>
 
 int Similarity::lcsLength(const std::string& a, const std::string& b) {
-    int n = a.size();
-    int m = b.size();
+    size_t n = a.size();
+    size_t m = b.size();
     std::vector<std::vector<int>> dp(n + 1, std::vector<int>(m + 1, 0));
 
     for (int i = 1; i <= n; i++) {
@@ -24,8 +24,8 @@ int Similarity::lcsLength(const std::string& a, const std::string& b) {
 }
 
 int Similarity::lcsLengthOptimized(const std::string& a, const std::string& b) {
-    int n = a.size();
-    int m = b.size();
+    size_t n = a.size();
+    size_t m = b.size();
 
     if (m > n) return lcsLengthOptimized(b, a); // 确保 b 是更短的
 
@@ -49,7 +49,7 @@ int Similarity::lcsLengthOptimized(const std::string& a, const std::string& b) {
 }
 
 int Similarity::lcsLengthOptimizedPlus(const std::string& a, const std::string& b) {
-    int n = a.size(), m = b.size();
+    size_t n = a.size(), m = b.size();
     if (n == 0 || m == 0) return 0;
 
     // 确保 b 是更短的
@@ -57,8 +57,8 @@ int Similarity::lcsLengthOptimizedPlus(const std::string& a, const std::string& 
     const std::string* shortStr = &b;
     if (m > n) std::swap(longStr, shortStr);
 
-    int lenLong = longStr->size();
-    int lenShort = shortStr->size();
+    size_t lenLong = longStr->size();
+    size_t lenShort = shortStr->size();
 
     std::vector<int> dp(lenShort + 1, 0);
     int prev, tmp;

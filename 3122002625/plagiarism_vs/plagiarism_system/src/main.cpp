@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
     string originalText = readFile(originalPath);
     string plagiarizedText = readFile(plagiarizedPath);
 
-    double similarity = Similarity::calculate(originalText, plagiarizedText);
+    double similarity = Similarity::calculate(originalText, plagiarizedText, Similarity::LCS_OPTIMIZED_PLUS);
 
     ofstream out(outputPath);
     if (!out.is_open()) {
