@@ -6,8 +6,6 @@
 #include "Similarity.h"
 #include <vector>
 #include <algorithm>
-#include <unordered_set>
-#include <unordered_map>
 
 int Similarity::lcsLength(const std::string& a, const std::string& b) {
     int n = a.size();
