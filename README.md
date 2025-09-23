@@ -499,3 +499,13 @@ TEST_METHOD(SingleChar)
 
 - `Similarity::calculate` 功能全面，鲁棒性高，可直接用于作业或系统的文本相似度计算。
 - 后续可结合语义分析进一步提高对复杂抄袭场景的识别能力。
+
+### 五、Github管理开发过程
+
+使用Git工具和Github平台管理该项目全流程开发
+
+每开发一个新功能，则在当前main主分支开出一个新分支，新分支要求命名跟该功能相关。待该功能开发稳定后，本地commit并同时push到远程仓库。远程仓库打开Pull Request，解决好分支的冲突后，拉取合并到主分支，即完成一项功能的开发。
+
+![](pic/pr_github.png)
+
+同时，每次commit的信息要求规范、简短，这里参考了[Commit message 和 Change log 编写指南 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)的指南。
