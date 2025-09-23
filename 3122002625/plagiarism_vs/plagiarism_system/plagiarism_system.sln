@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "plagiarism_system_test", ".
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Similarity", "..\Similarity\Similarity.vcxproj", "{9C34223D-24F3-41E3-BEF1-91CCF2B49DFB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "plagiarism_system_benchmark", "..\plagiarism_system_benchmark\plagiarism_system_benchmark.vcxproj", "{FAD3FEE2-6A68-40E6-ADC6-2B0F0738E30F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{9C34223D-24F3-41E3-BEF1-91CCF2B49DFB}.Release|x64.Build.0 = Release|x64
 		{9C34223D-24F3-41E3-BEF1-91CCF2B49DFB}.Release|x86.ActiveCfg = Release|Win32
 		{9C34223D-24F3-41E3-BEF1-91CCF2B49DFB}.Release|x86.Build.0 = Release|Win32
+		{FAD3FEE2-6A68-40E6-ADC6-2B0F0738E30F}.Debug|x64.ActiveCfg = Debug|x64
+		{FAD3FEE2-6A68-40E6-ADC6-2B0F0738E30F}.Debug|x64.Build.0 = Debug|x64
+		{FAD3FEE2-6A68-40E6-ADC6-2B0F0738E30F}.Debug|x86.ActiveCfg = Debug|Win32
+		{FAD3FEE2-6A68-40E6-ADC6-2B0F0738E30F}.Debug|x86.Build.0 = Debug|Win32
+		{FAD3FEE2-6A68-40E6-ADC6-2B0F0738E30F}.Release|x64.ActiveCfg = Release|x64
+		{FAD3FEE2-6A68-40E6-ADC6-2B0F0738E30F}.Release|x64.Build.0 = Release|x64
+		{FAD3FEE2-6A68-40E6-ADC6-2B0F0738E30F}.Release|x86.ActiveCfg = Release|Win32
+		{FAD3FEE2-6A68-40E6-ADC6-2B0F0738E30F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
